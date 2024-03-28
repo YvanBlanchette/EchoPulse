@@ -5,13 +5,10 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import ActionTooltip from "./action-tooltip";
+import { ActionTooltip } from "./action-tooltip";
 
 export function ModeToggle() {
 	const { setTheme, theme } = useTheme();
-
-	console.log(theme);
 
 	return (
 		<ActionTooltip side="right" align="center" label={theme === "light" ? "Passer au mode Sombre" : "Passer au mode Clair"}>

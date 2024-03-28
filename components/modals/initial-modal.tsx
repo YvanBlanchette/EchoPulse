@@ -1,33 +1,36 @@
 "use client";
 
+import axios from "axios";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import { useEffect, useState } from "react";
 
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import FileUpload from "@/components/file-upload";
+import { FileUpload } from "@/components/file-upload";
 import { useRouter } from "next/navigation";
 
-// Using zod resolver to validate the input fields
 const formSchema = z.object({
-	name: z.string().min(1, { message: "Le nom de serveur est nécessaire pour créer un nouveau serveur." }),
-	imageUrl: z.string().min(1, { message: "L'image de serveur est nécessaire pour créer un nouveau serveur" }),
+	name: z.string().min(1, {
+		message: "Server name is required.",
+	}),
+	imageUrl: z.string().min(1, {
+		message: "Server image is required.",
+	}),
 });
 
-const InitialModal = () => {
+export const InitialModal = () => {
 	const [isMounted, setIsMounted] = useState(false);
+
 	const router = useRouter();
 
 	useEffect(() => {
 		setIsMounted(true);
 	}, []);
 
-	// Preparing the form
 	const form = useForm({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -36,17 +39,17 @@ const InitialModal = () => {
 		},
 	});
 
-	// Initializing the loading state
 	const isLoading = form.formState.isSubmitting;
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
 		try {
 			await axios.post("/api/servers", values);
+
 			form.reset();
 			router.refresh();
 			window.location.reload();
 		} catch (error) {
-			console.error("Une erreur est survenue: ", error);
+			console.log(error);
 		}
 	};
 
@@ -111,4 +114,3 @@ const InitialModal = () => {
 		</Dialog>
 	);
 };
-export default InitialModal;

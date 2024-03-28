@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import ActionTooltip from "@/components/action-tooltip";
+import { ActionTooltip } from "@/components/action-tooltip";
 
 interface NavigationItemsProps {
 	id: string;
@@ -11,7 +11,7 @@ interface NavigationItemsProps {
 	name: string;
 }
 
-const NavigationItem = ({ id, imageUrl, name }: NavigationItemsProps) => {
+export const NavigationItem = ({ id, imageUrl, name }: NavigationItemsProps) => {
 	const params = useParams();
 	const router = useRouter();
 
@@ -43,4 +43,3 @@ const NavigationItem = ({ id, imageUrl, name }: NavigationItemsProps) => {
 		</>
 	);
 };
-export default NavigationItem;
