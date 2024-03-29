@@ -1,9 +1,11 @@
+"use client";
+
 import Image from "next/image";
 
 interface LogoProps {
-	width: number;
-	height: number;
-	variant: string;
+	width?: number;
+	height?: number;
+	variant?: string;
 }
 
 const Logo = ({ width, height, variant }: LogoProps) => {

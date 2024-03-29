@@ -1,7 +1,8 @@
-import { currentProfile } from "@/lib/current-profile";
-import { db } from "@/lib/db";
 import { redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+
+import { db } from "@/lib/db";
+import { currentProfile } from "@/lib/current-profile";
 
 interface InviteCodePageProps {
 	params: {
@@ -20,7 +21,6 @@ const InviteCodePage = async ({ params }: InviteCodePageProps) => {
 		return redirect("/");
 	}
 
-	// Function to verify if the user is already a member of the invited server.
 	const existingServer = await db.server.findFirst({
 		where: {
 			inviteCode: params.inviteCode,
@@ -32,10 +32,8 @@ const InviteCodePage = async ({ params }: InviteCodePageProps) => {
 		},
 	});
 
-	// If the user is already a member...
 	if (existingServer) {
-		// redirect the user to that existing server.
-		return redirect(`/server/${existingServer.id}`);
+		return redirect(`/servers/${existingServer.id}`);
 	}
 
 	const server = await db.server.update({
@@ -44,16 +42,20 @@ const InviteCodePage = async ({ params }: InviteCodePageProps) => {
 		},
 		data: {
 			members: {
-				create: [{ profileId: profile.id }],
+				create: [
+					{
+						profileId: profile.id,
+					},
+				],
 			},
 		},
 	});
 
-	return (
-		<div>
-			<h1>hello invite</h1>
-		</div>
-	);
+	if (server) {
+		return redirect(`/servers/${server.id}`);
+	}
+
+	return null;
 };
 
 export default InviteCodePage;

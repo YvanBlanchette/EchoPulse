@@ -17,7 +17,7 @@ export function ModeToggle() {
 					<Moon className="h-[1.75rem] w-[1.75rem]" />
 				</Button>
 			) : (
-				<Button onClick={() => setTheme("dark")} variant="transparent" size="icon">
+				<Button onClick={() => setTheme("dark")} variant="transparent" size="icon" className="text-secondary hover:text-primary">
 					<Sun className="h-[1.75rem] w-[1.75rem]" />
 				</Button>
 			)}

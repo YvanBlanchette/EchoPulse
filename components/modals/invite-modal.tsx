@@ -66,7 +66,7 @@ export const InviteModal = () => {
 							{copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
 						</Button>
 					</div>
-					<div className="w-full flex justify-center items-center">
+					<div className="w-full flex justify-center items-center pb-4">
 						<Button onClick={onNew} disabled={isLoading} variant="primary" size="md" className="text-sm text-white mt-4 text-center">
 							Générer une nouvelle invitation
 							<RefreshCw className="h-5 w-5 ml-4" />

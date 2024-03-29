@@ -27,13 +27,13 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className="w-56 text-xs font-medium text-black dark:text-neutral-400 space-y-[2px]">
 				{isAdmin && (
-					<DropdownMenuItem className="font-semibold px-3 py-2 text-sm cursor-pointer">
+					<DropdownMenuItem onClick={() => onOpen("serverSettings", { server: server })} className="font-semibold px-3 py-2 text-sm cursor-pointer">
 						Configurations Serveur
 						<Settings className="ml-auto h-4 w-4" />
 					</DropdownMenuItem>
 				)}
 				{isAdmin && (
-					<DropdownMenuItem className="font-semibold px-3 py-2 text-sm cursor-pointer hover:opacity-80">
+					<DropdownMenuItem onClick={() => onOpen("members", { server: server })} className="font-semibold px-3 py-2 text-sm cursor-pointer hover:opacity-80">
 						Gérer les utilisateurs
 						<UsersRound className="ml-auto h-4 w-4" />
 					</DropdownMenuItem>

@@ -39,7 +39,7 @@ export async function POST(request: Request) {
 		//If there is an error...
 	} catch (error) {
 		// log the error...
-		console.error("[SERVERS_POST] Une erreur est survenue: ", error);
+		console.error("[SERVERS_POST]", error);
 		// and throw a new error response
 		return new NextResponse("Erreur Interne", { status: 500 });
 	}
