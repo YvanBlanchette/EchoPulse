@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Chamber, ChamberType, MemberRole, Server } from "@prisma/client";
 import { Lock, Mic, Settings, Text, Trash2, Video } from "lucide-react";
 import { ActionTooltip } from "@/components/action-tooltip";
-import { useModal } from "@/hooks/useModalStore";
+import { ModalType, useModal } from "@/hooks/useModalStore";
 
 interface ServerChamberProps {
 	chamber: Chamber;
@@ -26,9 +26,18 @@ export const ServerChamber = ({ chamber, server, role }: ServerChamberProps) => 
 
 	const Icon = iconMap[chamber.type];
 
+	const onClick = () => {
+		router.push(`/servers/${params?.serverId}/chambers/${chamber.id}`);
+	};
+
+	const onAction = (e: React.MouseEvent, action: ModalType) => {
+		e.stopPropagation();
+		onOpen(action, { chamber, server });
+	};
+
 	return (
 		<button
-			onClick={() => {}}
+			onClick={onClick}
 			className={cn(
 				"group px-2 py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition mb-1",
 				params?.chamberId === chamber.id && "bg-zinc-700/20 dark:bg-zinc-700"
@@ -47,13 +56,13 @@ export const ServerChamber = ({ chamber, server, role }: ServerChamberProps) => 
 				<div className="ml-auto flex items-center gap-x-2">
 					<ActionTooltip label="Modifier" side="top">
 						<Settings
-							onClick={() => onOpen("editEchoChamber", { server, chamber })}
+							onClick={(e) => onAction(e, "editEchoChamber")}
 							className="hidden group-hover:block w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition"
 						/>
 					</ActionTooltip>
 					<ActionTooltip label="Supprimer" side="top">
 						<Trash2
-							onClick={() => onOpen("deleteEchoChamber", { server, chamber })}
+							onClick={(e) => onAction(e, "deleteEchoChamber")}
 							className="hidden group-hover:block w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition"
 						/>
 					</ActionTooltip>
