@@ -1,6 +1,6 @@
-# Discord clone
+# EchoPulse
 
-A discord clone app built with Next.js, Typescript, Shadcn Ui and Tailwind css.
+Is a social media app built with Next.js, Typescript, Shadcn Ui and Tailwind css.
 
 Key Features:
 
