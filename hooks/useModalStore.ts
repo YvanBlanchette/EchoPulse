@@ -1,10 +1,21 @@
-import { Server } from "@prisma/client";
+import { Chamber, ChamberType, Server } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType = "createServer" | "invite" | "serverSettings" | "members";
+export type ModalType =
+	| "createServer"
+	| "invite"
+	| "members"
+	| "serverSettings"
+	| "leaveServer"
+	| "deleteServer"
+	| "createEchoChamber"
+	| "deleteEchoChamber"
+	| "editEchoChamber";
 
 interface ModalData {
 	server?: Server;
+	chamberType?: ChamberType;
+	chamber?: Chamber;
 }
 
 interface ModalStore {

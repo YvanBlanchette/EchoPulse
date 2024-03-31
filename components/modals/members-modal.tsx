@@ -27,9 +27,9 @@ import { Check, Loader2, MoreVertical, ShieldQuestion } from "lucide-react";
 import { FaGavel } from "react-icons/fa";
 
 const roleIconMap = {
-	GUEST: null,
-	MODERATOR: <BiSolidShield title="Modérateur" className="h-4 w-4 ml-2 text-secondary" />,
-	ADMIN: <BiSolidCrown title="Administrateur" className="h-4 w-4 ml-2 text-secondary" />,
+	GUEST: <BiSolidUser className="h-4 w-4 ml-2 text-[#eb9947]" />,
+	MODERATOR: <BiSolidShield title="Modérateur" className="h-4 w-4 ml-2 text-[#eb9947]" />,
+	ADMIN: <BiSolidCrown title="Administrateur" className="h-4 w-4 ml-2 text-[#eb9947]" />,
 };
 
 export const MembersModal = () => {
@@ -39,6 +39,37 @@ export const MembersModal = () => {
 
 	const isModalOpen = isOpen && type === "members";
 	const { server } = data as { server: ServerWithMembersWithProfiles };
+
+	//When kicking a member...
+	const onKick = async (memberId: string) => {
+		try {
+			//set the member state to loading
+			setLoadingId(memberId);
+
+			// Create the qs query
+			const url = qs.stringifyUrl({
+				url: `/api/members/${memberId}`,
+				query: {
+					serverId: server?.id,
+				},
+			});
+
+			// Get the response from the api
+			const response = await axios.delete(url);
+			// Refresh the data
+			router.refresh();
+			// Set the new data to be the server data
+			onOpen("members", { server: response.data });
+
+			// If there is an error...
+		} catch (error) {
+			// log the error...
+			console.error(error);
+		} finally {
+			// and remove the loading state
+			setLoadingId("");
+		}
+	};
 
 	const onRoleChange = async (memberId: string, role: MemberRole) => {
 		try {
@@ -94,12 +125,12 @@ export const MembersModal = () => {
 												<DropdownMenuPortal>
 													<DropdownMenuSubContent>
 														<DropdownMenuItem onClick={() => onRoleChange(member.id, "GUEST")}>
-															<BiSolidUser className="h-4 w-4 mr-2 text-secondary" />
+															<BiSolidUser className="h-4 w-4 mr-2 text-[#eb9947]" />
 															Utilisateur
 															{member.role === "GUEST" && <Check className="h-4 w-4 ml-3" />}
 														</DropdownMenuItem>
 														<DropdownMenuItem onClick={() => onRoleChange(member.id, "MODERATOR")}>
-															<BiSolidShield className="h-4 w-4 mr-2 text-secondary" />
+															<BiSolidShield className="h-4 w-4 mr-2 text-[#eb9947]" />
 															Modérateur
 															{member.role === "MODERATOR" && <Check className="h-4 w-4 ml-2" />}
 														</DropdownMenuItem>
@@ -107,7 +138,7 @@ export const MembersModal = () => {
 												</DropdownMenuPortal>
 											</DropdownMenuSub>
 											<DropdownMenuSeparator />
-											<DropdownMenuItem>
+											<DropdownMenuItem onClick={() => onKick(member.id)}>
 												<FaGavel className="h4 w-4 mr-2" />
 												Expulser
 											</DropdownMenuItem>

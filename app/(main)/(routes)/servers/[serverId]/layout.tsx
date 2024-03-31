@@ -28,10 +28,10 @@ const ServerIdLayout = async ({ children, params }: { children: React.ReactNode;
 
 	return (
 		<div className="h-full">
-			<div className="hidden md:flex flex-col fixed h-full w-60 z-20 inset-y-0">
+			<div className="hidden md:flex flex-col fixed h-full w-[275px] z-20 inset-y-0">
 				<ServerSidebar serverId={params.serverId} />
 			</div>
-			<main className="h-full md:pl-60">{children}</main>
+			<main className="h-full md:pl-[275px]">{children}</main>
 		</div>
 	);
 };

@@ -39,7 +39,10 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
 					</DropdownMenuItem>
 				)}
 				{isAdmin && (
-					<DropdownMenuItem className="text-red-700 dark:text-red-600 font-semibold px-3 py-2 text-sm cursor-pointer hover:opacity-80">
+					<DropdownMenuItem
+						onClick={() => onOpen("deleteServer", { server: server })}
+						className="text-red-700 dark:text-red-600 font-semibold px-3 py-2 text-sm cursor-pointer hover:opacity-80"
+					>
 						Supprimer le Serveur
 						<Trash2 className="ml-auto h-4 w-4" />
 					</DropdownMenuItem>
@@ -55,14 +58,20 @@ export const ServerHeader = ({ server, role }: ServerHeaderProps) => {
 					</DropdownMenuItem>
 				)}
 				{isModerator && (
-					<DropdownMenuItem className="text-indigo-600 dark:text-indigo-400 px-3 py-2 text-sm cursor-pointer hover:opacity-80">
-						Ouvrir une EchoChamber
+					<DropdownMenuItem
+						onClick={() => onOpen("createEchoChamber")}
+						className="text-indigo-600 dark:text-indigo-400 px-3 py-2 text-sm cursor-pointer hover:opacity-80"
+					>
+						Créer une EchoChambre
 						<DoorOpen className="ml-auto h-4 w-4" />
 					</DropdownMenuItem>
 				)}
 				{isModerator && <DropdownMenuSeparator />}
 				{!isAdmin && (
-					<DropdownMenuItem className="text-red-700 dark:text-red-500 px-3 py-2 text-sm cursor-pointer hover:opacity-80">
+					<DropdownMenuItem
+						onClick={() => onOpen("leaveServer", { server })}
+						className="text-red-700 dark:text-red-500 px-3 py-2 text-sm cursor-pointer hover:opacity-80"
+					>
 						Quitter le serveur
 						<LogOut className="ml-auto h-4 w-4" />
 					</DropdownMenuItem>
