@@ -8,21 +8,23 @@ interface ChatWelcomeProps {
 
 export const ChatWelcome = ({ name, type }: ChatWelcomeProps) => {
 	return (
-		<div className="space-y-2 px-4 mb-4">
+		<div className="px-4 mb-4 flex gap-3 items-center">
 			{type === "chamber" && (
-				<div className="h-[65px] w-[65px] rounded-full bg-zinc-500 dark:bg-zinc-700 flex items-center justify-center" title={`EchoChambre Texte`}>
-					<Text className="h-8 w-8 text-white" />
+				<div title={`EchoChambre Texte`}>
+					<Text className="h-14 w-14 text-black dark:text-white" />
 				</div>
 			)}
-			<p className="text-xl md:text-3xl font-bold">
-				{type === "chamber" ? "Bienvenue dans #" : ""}
-				{capitalize(name)}
-			</p>
-			<p className="text-zinc-600 dark:text-zinc-400 text-sm">
-				{type === "chamber"
-					? `Ceci est le début de la discussion dans l'EchoChambre #${capitalize(name)}.`
-					: `Ceci est le début de votre conversation avec ${capitalize(name)}`}
-			</p>
+			<div className="flex flex-col">
+				<p className="text-xl md:text-3xl font-bold">
+					{type === "chamber" ? "Bienvenue dans #" : ""}
+					{capitalize(name)}
+				</p>
+				<p className="text-zinc-600 dark:text-zinc-400 text-sm">
+					{type === "chamber"
+						? `Ceci est le début de la discussion dans l'EchoChambre #${capitalize(name)}.`
+						: `Ceci est le début de votre conversation avec ${capitalize(name)}`}
+				</p>
+			</div>
 		</div>
 	);
 };
