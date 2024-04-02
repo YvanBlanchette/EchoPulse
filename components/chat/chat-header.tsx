@@ -1,5 +1,7 @@
 import { Menu, Mic, Text, Video } from "lucide-react";
 import { MobileToggle } from "@/components/mobile-toggle";
+import { UserAvatar } from "../user-avatar";
+import { SocketIndicator } from "../socket-indicator";
 
 interface ChatHeaderProps {
 	serverId: string;
@@ -10,14 +12,18 @@ interface ChatHeaderProps {
 
 export const ChatHeader = ({ serverId, name, type, imageUrl }: ChatHeaderProps) => {
 	return (
-		<div className="text-md font-semibold px-4 flex items-center h-12 border-b-2 border-neutral-200 dark:border-neutral-800">
+		<div className="text-md font-semibold px-4 flex items-center h-16 border-b-2 border-neutral-200 dark:border-neutral-800">
 			{type === "chamber" && (
 				<div>
 					<Text className="w-5 h-5 text-zinc-500 dark:text-zinc-400 mr-2" />
 				</div>
 			)}
-			<p className="capitalize font-semibold text-md text-black dark:text-white">{name}</p>
-			<MobileToggle serverId={serverId} />
+			{type === "conversation" && <UserAvatar src={imageUrl} className="" />}
+			<p className="capitalize font-semibold text-lg text-black dark:text-white ml-2">{name}</p>
+			<div className="ml-auto flex items-center">
+				<SocketIndicator />
+				<MobileToggle serverId={serverId} />
+			</div>
 		</div>
 	);
 };

@@ -10,12 +10,16 @@ export type ModalType =
 	| "deleteServer"
 	| "createEchoChamber"
 	| "deleteEchoChamber"
-	| "editEchoChamber";
+	| "editEchoChamber"
+	| "messageFile"
+	| "deleteMessage";
 
 interface ModalData {
 	server?: Server;
 	chamberType?: ChamberType;
 	chamber?: Chamber;
+	apiUrl?: string;
+	query?: Record<string, any>;
 }
 
 interface ModalStore {

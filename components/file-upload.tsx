@@ -1,6 +1,6 @@
 "use client";
 
-import { X } from "lucide-react";
+import { FileIcon, X } from "lucide-react";
 import Image from "next/image";
 
 import { UploadDropzone } from "@/lib/uploadthing";
@@ -25,6 +25,25 @@ export const FileUpload = ({ endpoint, value, onChange }: FileUploadProps) => {
 					type="button"
 				>
 					<X />
+				</button>
+			</div>
+		);
+	}
+
+	if (value && fileType === "pdf") {
+		return (
+			<div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
+				<FileIcon className="h-10 w-10 fill-[#002388] stroke-[#eb9947]" />
+				<a href={value} target="_blank" rel="noopener noreferrer" title="Ouvrir le fichier" className="ml-2 text-sm text-[#002388] hover:underline">
+					{value}
+				</a>
+				<button
+					onClick={() => onChange("")}
+					className="bg-red-600 hover:bg-red-500 text-white p-1 rounded-full absolute -top-2 -right-2 shadow-sm"
+					type="button"
+					title="Supprimer le fichier"
+				>
+					<X className="h-4 w-4" />
 				</button>
 			</div>
 		);

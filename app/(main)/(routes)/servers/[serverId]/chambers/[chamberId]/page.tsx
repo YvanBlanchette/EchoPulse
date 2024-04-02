@@ -1,4 +1,6 @@
 import { ChatHeader } from "@/components/chat/chat-header";
+import { ChatInput } from "@/components/chat/chat-input";
+import { ChatMessages } from "@/components/chat/chat-messages";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { redirectToSignIn } from "@clerk/nextjs";
@@ -39,6 +41,18 @@ const ChamberIdPage = async ({ params }: ChamberIdPageProps) => {
 	return (
 		<div className="bg-white dark:bg-[#313338] flex flex-col h-full">
 			<ChatHeader name={chamber.name} serverId={chamber.serverId} type="chamber" />
+			<ChatMessages
+				member={member}
+				name={chamber.name}
+				chatId={chamber.id}
+				type="chamber"
+				apiUrl="/api/messages"
+				socketUrl="/api/socket/messages"
+				socketQuery={{ chamberId: chamber.id, serverId: chamber.serverId }}
+				paramKey="chamberId"
+				paramValue={chamber.id}
+			/>
+			<ChatInput name={chamber.name} type="chamber" apiUrl="/api/socket/messages" query={{ chamberId: chamber.id, serverId: chamber.serverId }} />
 		</div>
 	);
 };
