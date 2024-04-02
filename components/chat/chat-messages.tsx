@@ -52,6 +52,7 @@ export const ChatMessages = ({ name, member, chatId, apiUrl, socketUrl, socketQu
 		count: data?.pages?.[0]?.items?.length ?? 0,
 	});
 
+	// @ts-ignore
 	if (status === "loading") {
 		return (
 			<div className="flex flex-col flex-1 justify-center items-center">
