@@ -36,7 +36,7 @@ export const NavigationItem = ({ id, imageUrl, name }: NavigationItemsProps) => 
 							params?.serverId === id && "bg-primary/10 text-primary rounded-[16px]"
 						)}
 					>
-						<Image src={imageUrl} alt={name} fill />
+						<Image src={imageUrl} alt={name} fill sizes="100vw" />
 					</div>
 				</button>
 			</ActionTooltip>

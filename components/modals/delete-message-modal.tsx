@@ -5,7 +5,7 @@ import { useState } from "react";
 import qs from "query-string";
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { useModal } from "@/hooks/useModalStore";
+import { useModal } from "@/hooks/use-modal-store";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 

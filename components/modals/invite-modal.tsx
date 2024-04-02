@@ -5,12 +5,12 @@ import { useState } from "react";
 import { Check, Copy, RefreshCw } from "lucide-react";
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { useModal } from "@/hooks/useModalStore";
+import { useModal } from "@/hooks/use-modal-store";
 import Logo from "@/components/Logo";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useOrigin } from "@/hooks/useOrigin";
+import { useOrigin } from "@/hooks/use-origin";
 
 export const InviteModal = () => {
 	const { onOpen, isOpen, onClose, type, data } = useModal();

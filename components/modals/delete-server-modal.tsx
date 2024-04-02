@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { useModal } from "@/hooks/useModalStore";
+import { useModal } from "@/hooks/use-modal-store";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";

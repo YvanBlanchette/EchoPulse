@@ -1,14 +1,15 @@
+import { NextApiRequest } from "next";
+import { MemberRole } from "@prisma/client";
+
+import { NextApiResponseServerIo } from "@/types";
 import { currentProfilePages } from "@/lib/current-profile-pages";
 import { db } from "@/lib/db";
-import { NextApiResponseServerIo } from "@/types";
-import { MemberRole } from "@prisma/client";
-import { NextApiRequest } from "next";
 
 // Function to update/delete a message
 export default async function handler(request: NextApiRequest, response: NextApiResponseServerIo) {
 	// Limit the request methods
 	if (request.method !== "DELETE" && request.method !== "PATCH") {
-		return response.status(405).json({ message: "Méthode refusée" });
+		return response.status(405).json({ error: "Méthode refusée" });
 	}
 
 	try {
@@ -24,19 +25,19 @@ export default async function handler(request: NextApiRequest, response: NextApi
 		// If there is no profile...
 		if (!profile) {
 			// return a access denied (401) response
-			return response.status(401).json({ message: "Accès refusé" });
+			return response.status(401).json({ error: "Accès refusé" });
 		}
 
 		// If there is no server id...
 		if (!serverId) {
 			// return a server id missing (400) response
-			return response.status(400).json({ message: "Id Serveur manquant" });
+			return response.status(400).json({ error: "Id Serveur manquant" });
 		}
 
 		// If there is no chamber id...
 		if (!chamberId) {
 			// return a chamber id missing (400) response
-			return response.status(400).json({ message: "Id Chambre manquant" });
+			return response.status(400).json({ error: "Id Chambre manquant" });
 		}
 
 		// Get the server from the servers in the db
@@ -57,7 +58,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
 		// If there is no server...
 		if (!server) {
 			// return a server not found (404) response
-			return response.status(404).json({ message: "Serveur introuvable" });
+			return response.status(404).json({ error: "Serveur introuvable" });
 		}
 
 		// Get the EchoChamber form the chambers in the db
@@ -71,7 +72,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
 		// If there is no chamber...
 		if (!chamber) {
 			// return a chamber not found (404) response
-			return response.status(404).json({ message: "EchoChambre introuvable" });
+			return response.status(404).json({ error: "EchoChambre introuvable" });
 		}
 
 		// Get the current member form the members in the db
@@ -80,7 +81,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
 		// If there is no member...
 		if (!member) {
 			// return a member not found (404) response
-			return response.status(404).json({ message: "Utilisateur introuvable" });
+			return response.status(404).json({ error: "Utilisateur introuvable" });
 		}
 
 		// Get the message from the messages in the db
@@ -101,7 +102,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
 		// If there is no message...
 		if (!message || message.deleted) {
 			// return a message not found (404) response
-			return response.status(404).json({ message: "Message introuvable" });
+			return response.status(404).json({ error: "Message introuvable" });
 		}
 
 		//Creating some constants
@@ -113,7 +114,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
 		// If modifying is not allowed for the user...
 		if (!canModify) {
 			// return a access denied (401) response
-			return response.status(401).json({ message: "Accès Refusé" });
+			return response.status(401).json({ error: "Accès Refusé" });
 		}
 
 		// If request method is delete...
@@ -143,7 +144,7 @@ export default async function handler(request: NextApiRequest, response: NextApi
 			// If not the message owner...
 			if (!isMessageOwner) {
 				// return a access denied (401) response
-				return response.status(401).json({ message: "Accès Refusé" });
+				return response.status(401).json({ error: "Accès Refusé" });
 			}
 
 			// Modify the message
@@ -178,6 +179,6 @@ export default async function handler(request: NextApiRequest, response: NextApi
 		// log the error...
 		console.error("[MESSAGE_ID_PAGES]", error);
 		// and return an internal error (500) response
-		return response.status(500).json({ message: "Erreur Interne" });
+		return response.status(500).json({ error: "Erreur Interne" });
 	}
 }

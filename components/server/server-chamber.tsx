@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Chamber, ChamberType, MemberRole, Server } from "@prisma/client";
 import { Lock, Mic, Settings, Text, Trash2, Video } from "lucide-react";
 import { ActionTooltip } from "@/components/action-tooltip";
-import { ModalType, useModal } from "@/hooks/useModalStore";
+import { ModalType, useModal } from "@/hooks/use-modal-store";
 
 interface ServerChamberProps {
 	chamber: Chamber;

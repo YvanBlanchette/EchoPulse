@@ -4,7 +4,7 @@ import { ChamberType, MemberRole } from "@prisma/client";
 import { ServerWithMembersWithProfiles } from "@/types";
 import { ActionTooltip } from "@/components/action-tooltip";
 import { Plus, Settings } from "lucide-react";
-import { useModal } from "@/hooks/useModalStore";
+import { useModal } from "@/hooks/use-modal-store";
 
 interface ServerSectionProps {
 	label: string;

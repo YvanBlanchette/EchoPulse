@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { BiSolidCrown, BiSolidShield, BiSolidUser } from "react-icons/bi";
-import { useModal } from "@/hooks/useModalStore";
+import { useModal } from "@/hooks/use-modal-store";
 import { ServerWithMembersWithProfiles } from "@/types";
 import { MemberRole } from "@prisma/client";
 import axios from "axios";
