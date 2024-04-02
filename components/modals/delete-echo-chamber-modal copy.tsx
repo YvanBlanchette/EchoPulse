@@ -46,7 +46,7 @@ export const DeleteEchoChamberModal = () => {
 					<Logo width={300} height={60} variant="light" />
 					<DialogTitle className="text-secondary text-center text-2xl font-semibold">{chamber?.name}</DialogTitle>
 					<DialogDescription className="text-center text-sm font-medium text-zinc-500 px-6">
-						Êtes-vous certain de vouloir supprimer {chamber?.name}?<br /> Cet action est irréversible, <b>vous ne pourrez plus revenir en arrière...</b>
+						Êtes-vous certain de vouloir supprimer {chamber?.name}?<br /> Cette action est irréversible, <b>vous ne pourrez plus revenir en arrière...</b>
 					</DialogDescription>
 				</DialogHeader>
 				<div className="p-6 flex justify-center items-center gap-4 bg-gray-100">

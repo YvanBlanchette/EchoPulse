@@ -39,7 +39,7 @@ export const LeaveServerModal = () => {
 					<Logo width={300} height={60} variant="light" />
 					<DialogTitle className="text-secondary text-center text-2xl font-semibold">{server?.name}</DialogTitle>
 					<DialogDescription className="text-center text-sm font-medium text-zinc-500 px-6">
-						Êtes-vous certain de vouloir quitter {server?.name}?<br /> Vous aurez besoin d'une invitation pour y accéder de nouveau...
+						Êtes-vous certain de vouloir quitter {server?.name}?<br /> Vous aurez besoin d&apos;une invitation pour y accéder de nouveau...
 					</DialogDescription>
 				</DialogHeader>
 				<div className="p-6 flex justify-center items-center gap-4 bg-gray-100">

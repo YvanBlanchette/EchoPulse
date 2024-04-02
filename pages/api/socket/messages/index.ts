@@ -22,11 +22,11 @@ export default async function handler(request: NextApiRequest, response: NextApi
 		}
 
 		if (!chamberId) {
-			return response.status(400).json({ message: "ID d'EchoChambre manquant" });
+			return response.status(400).json({ message: "ID EchoChambre manquant" });
 		}
 
 		if (!content) {
-			return response.status(400).json({ message: "Contenu de l'Echo manquant" });
+			return response.status(400).json({ message: "Contenu Echo manquant" });
 		}
 
 		const server = await db.server.findFirst({

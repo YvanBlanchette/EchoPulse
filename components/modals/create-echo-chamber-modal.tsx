@@ -108,7 +108,7 @@ export const CreateEchoChamberModal = () => {
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>
-											Type d'EchoChambre <span className="text-red-500">*</span>
+											Type d&apos;EchoChambre <span className="text-red-500">*</span>
 										</FormLabel>
 										<Select disabled={isLoading} onValueChange={field.onChange} defaultValue={field.value}>
 											<FormControl>

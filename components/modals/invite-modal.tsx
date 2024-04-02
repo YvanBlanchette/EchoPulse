@@ -55,7 +55,7 @@ export const InviteModal = () => {
 					<DialogDescription className="text-center text-md font-medium text-zinc-500">Invitez vos amis à rejoindre la communauté EchoPulse!</DialogDescription>
 				</DialogHeader>
 				<div className="p-6">
-					<Label className="uppercase text-xs font-bold text-zinc-500 dark:text-primary/70">Lien d'invitation du serveur</Label>
+					<Label className="uppercase text-xs font-bold text-zinc-500 dark:text-primary/70">Lien d&apos;invitation du serveur</Label>
 					<div className="flex items-center mt-2 gap-x-2">
 						<Input
 							disabled={isLoading}

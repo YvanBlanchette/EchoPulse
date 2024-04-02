@@ -41,7 +41,7 @@ export const DeleteMessageModal = () => {
 					<DialogTitle className="text-secondary text-center text-2xl font-semibold">Supprimer un message</DialogTitle>
 					<DialogDescription className="text-center text-sm font-medium text-zinc-500 px-6">
 						Êtes-vous certain de vouloir supprimer ce message?
-						<br /> Cet action est irréversible, <b>vous ne pourrez plus revenir en arrière...</b>
+						<br /> Cette action est irréversible, <b>vous ne pourrez plus revenir en arrière...</b>
 					</DialogDescription>
 				</DialogHeader>
 				<div className="p-6 flex justify-center items-center gap-4 bg-gray-100">

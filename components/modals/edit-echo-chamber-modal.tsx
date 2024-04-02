@@ -92,7 +92,7 @@ export const EditEchoChamberModal = () => {
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel className="text-sm font-bold text-zinc-500 dark:text-secondary/70">
-											Nom de l'EchoChambre <span className="text-red-500">*</span>
+											Nom de l&apos;EchoChambre <span className="text-red-500">*</span>
 										</FormLabel>
 										<FormControl>
 											<Input
@@ -112,7 +112,7 @@ export const EditEchoChamberModal = () => {
 								render={({ field }) => (
 									<FormItem>
 										<FormLabel>
-											Type d'EchoChambre <span className="text-red-500">*</span>
+											Type d&apos;EchoChambre <span className="text-red-500">*</span>
 										</FormLabel>
 										<Select disabled={isLoading} onValueChange={field.onChange} defaultValue={field.value}>
 											<FormControl>
