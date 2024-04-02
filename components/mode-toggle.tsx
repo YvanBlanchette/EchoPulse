@@ -1,26 +1,41 @@
 "use client";
 
-import * as React from "react";
+import { useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-
 import { Button } from "@/components/ui/button";
-import { ActionTooltip } from "./action-tooltip";
 
 export function ModeToggle() {
-	const { setTheme, theme } = useTheme();
+	const { setTheme } = useTheme();
+	const [mode, setMode] = useState("dark");
 
 	return (
-		<ActionTooltip side="right" align="center" label={theme === "light" ? "Passer au mode Sombre" : "Passer au mode Clair"}>
-			{theme === "dark" ? (
-				<Button onClick={() => setTheme("light")} variant="transparent" size="icon" className="text-stone-500 hover:text-stone-100 transition duration-300">
+		<>
+			{mode === "dark" ? (
+				<Button
+					onClick={() => {
+						setTheme("light");
+						setMode("light");
+					}}
+					variant="transparent"
+					size="icon"
+					className="text-stone-500 hover:text-stone-100 transition duration-300"
+				>
 					<Moon className="h-[1.75rem] w-[1.75rem]" />
 				</Button>
 			) : (
-				<Button onClick={() => setTheme("dark")} variant="transparent" size="icon" className="text-secondary hover:text-primary">
+				<Button
+					onClick={() => {
+						setTheme("dark");
+						setMode("dark");
+					}}
+					variant="transparent"
+					size="icon"
+					className="text-zinc-500 hover:text-secondary"
+				>
 					<Sun className="h-[1.75rem] w-[1.75rem]" />
 				</Button>
 			)}
-		</ActionTooltip>
+		</>
 	);
 }

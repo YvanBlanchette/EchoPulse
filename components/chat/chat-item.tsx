@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useModal } from "@/hooks/use-modal-store";
 import { useRouter, useParams } from "next/navigation";
+import Link from "next/link";
 
 interface ChatItemProps {
 	id: string;
@@ -127,18 +128,18 @@ export const ChatItem = ({ id, content, member, timestamp, fileUrl, deleted, cur
 						<span className="text-xs text-zinc-500 dark:text-zinc-400">{timestamp}</span>
 					</div>
 					{isImage && (
-						<a
+						<Link
 							href={fileUrl}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="relative aspect-square rounded-md mt-2 overflow-hidden border flex items-center bg-secondary h-48 w-48"
 						>
-							<Image src={fileUrl} alt={content} fill className="object-cover" />
-						</a>
+							<Image src={fileUrl} alt={content} fill sizes="(max-width: 768px) 100vw" className="object-cover" />
+						</Link>
 					)}
 					{isPDF && (
 						<div className="relative p-2 mt-2 rounded-md bg-background/10">
-							<a
+							<Link
 								href={fileUrl}
 								target="_blank"
 								rel="noopener noreferrer"
@@ -147,7 +148,7 @@ export const ChatItem = ({ id, content, member, timestamp, fileUrl, deleted, cur
 							>
 								<FileIcon className="h-10 w-10 fill-[#b6b6b6] stroke-[#808080] mr-2" />
 								{fileUrl}
-							</a>
+							</Link>
 						</div>
 					)}
 					{!fileUrl && !isEditing && (
