@@ -17,6 +17,7 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useModal } from "@/hooks/useModalStore";
+import { useRouter, useParams } from "next/navigation";
 
 interface ChatItemProps {
 	id: string;
@@ -46,6 +47,8 @@ const formSchema = z.object({
 export const ChatItem = ({ id, content, member, timestamp, fileUrl, deleted, currentMember, isUpdated, socketUrl, socketQuery }: ChatItemProps) => {
 	const [isEditing, setIsEditing] = useState(false);
 	const { onOpen } = useModal();
+	const router = useRouter();
+	const params = useParams();
 	const fileType = fileUrl?.split(".").pop();
 
 	const form = useForm<z.infer<typeof formSchema>>({
@@ -99,16 +102,26 @@ export const ChatItem = ({ id, content, member, timestamp, fileUrl, deleted, cur
 		return () => window.removeEventListener("keydown", handleKeyDown);
 	}, []);
 
+	// Function to handle member clicks
+	const onMemberClick = () => {
+		// Return if member clicked on himself
+		if (member.id === currentMember.id) return;
+
+		router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
+	};
+
 	return (
 		<div className="relative group flex items-center hover:bg-black/5 p-5 transition w-full ">
 			<div className="group flex gap-x-2 items-start w-full">
-				<div className="cursor-pointer hover:drop-shadow-md transition">
+				<div onClick={onMemberClick} className="cursor-pointer hover:drop-shadow-md transition">
 					<UserAvatar src={member.profile.imageUrl} />
 				</div>
 				<div className="flex flex-col w-full">
 					<div className="flex items-center gap-x-2">
 						<div className="flex items-center">
-							<p className="font-semibold text-sm hover:underline cursor-pointer mr-2">{member.profile.name}</p>
+							<p onClick={onMemberClick} className="font-semibold text-sm hover:underline cursor-pointer mr-2">
+								{member.profile.name}
+							</p>
 							<ActionTooltip label={member.role}>{roleIconMap[member.role]}</ActionTooltip>
 						</div>
 						<span className="text-xs text-zinc-500 dark:text-zinc-400">{timestamp}</span>
