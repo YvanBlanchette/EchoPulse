@@ -13,7 +13,7 @@ const font = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "EchoPulse",
-	description: "Social platform to work and socialize with like minded people!",
+	description: "Un réseau social 100% québécois, créé par des gens d'ici pour des gens d'ici!",
 };
 
 export default function RootLayout({
